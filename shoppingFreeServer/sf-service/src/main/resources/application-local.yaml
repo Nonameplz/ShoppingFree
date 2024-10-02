@@ -1,0 +1,4 @@
+sf:
+  db:
+    host: 118.25.99.112 # 修改为你自己的虚拟机IP地址
+    pw: 0721~Forever # 修改为docker中的MySQL密码
