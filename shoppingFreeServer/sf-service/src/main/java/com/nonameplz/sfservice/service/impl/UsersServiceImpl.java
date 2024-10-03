@@ -1,6 +1,7 @@
 package com.nonameplz.sfservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.nonameplz.sfcommon.exception.CommonException;
 import com.nonameplz.sfcommon.exception.DbException;
@@ -27,6 +28,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static com.nonameplz.sfservice.enums.userInfoException.USER_NOT_FOUND;
@@ -121,6 +123,9 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements 
         BeanUtils.copyProperties(user, userLoginVO);
         userLoginVO.setToken(tokenMap);
 
+        user.setLastLogin(LocalDateTime.now());
+        usersMapper.updateById(user);
+
         return userLoginVO;
     }
 
@@ -141,6 +146,8 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, User> implements 
 
         return userInfoVO;
     }
+
+
 
     private List<String> selectSingleColumn(String columnName, SFunction<User, String> getFun) {
 

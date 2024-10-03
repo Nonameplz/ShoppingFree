@@ -4,6 +4,7 @@ package com.nonameplz.sfservice.controller;
 import com.nonameplz.sfcommon.domain.R;
 import com.nonameplz.sfservice.domain.dto.LoginFormDTO;
 import com.nonameplz.sfservice.domain.dto.RegisterFormDTO;
+import com.nonameplz.sfservice.domain.vo.UserInfoVO;
 import com.nonameplz.sfservice.domain.vo.UserLoginVO;
 import com.nonameplz.sfservice.service.IUsersService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,11 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -50,6 +47,10 @@ public class UsersController {
         return R.ok();
     }
 
+    @GetMapping()
+    @Operation(summary = "user Info", description = "获取用户信息接口")
+    public R<UserInfoVO> getUserInfo(@RequestParam("UserUUID") String UserUUID) {
+        return R.ok(usersService.getUserInfo(UserUUID));
+    }
 
-    
 }

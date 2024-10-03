@@ -64,7 +64,7 @@ knife4j:
 sf:
   jwt:
     location: classpath:sf.jks
-    alias: noname
+    alias: sf
     password: 0721~Forever
     tokenTTL: 30m
   auth:

@@ -5,6 +5,7 @@ import com.nonameplz.sfservice.utils.JwtTool;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 
@@ -15,12 +16,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request,
-                             HttpServletResponse response,
-                             Object handler) throws Exception {
+                             @NotNull HttpServletResponse response,
+                             @NotNull Object handler) throws Exception {
         // 1.获取请求头中的 token
-        String token = request.getHeader("authorization");
+        String token = request.getHeader("Authorization");
         // 2.校验token
-        Long userId = jwtTool.parseToken(token);
+        String userId = jwtTool.validateToken(token);
         // 3.存入上下文
         UserContext.setUser(userId);
         // 4.放行
@@ -28,9 +29,9 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request,
-                                HttpServletResponse response,
-                                Object handler,
+    public void afterCompletion(@NotNull HttpServletRequest request,
+                                @NotNull HttpServletResponse response,
+                                @NotNull Object handler,
                                 Exception ex) throws Exception {
         // 清理用户
         UserContext.removeUser();
