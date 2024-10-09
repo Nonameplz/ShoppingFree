@@ -14,6 +14,9 @@ public class RegisterFormDTO {
     @NotEmpty(message = "密码不能为空!")
     @Schema(description = "用户密码", requiredMode = Schema.RequiredMode.REQUIRED)
     private String password;
+    @NotEmpty(message = "二次输入密码不能为空!")
+    @Schema(description = "二次输入密码", requiredMode = Schema.RequiredMode.REQUIRED)
+    private String rePassword;
     @NotEmpty(message = "邮箱不能为空!")
     @Schema(description = "用户邮箱", requiredMode = Schema.RequiredMode.REQUIRED)
     private String email;

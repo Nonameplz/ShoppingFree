@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 @Component
 public class JwtTool {
-    public static final Duration NORMAL_JWT_EXPIRE_TIME = Duration.ofMinutes(50);
+    public static final Duration NORMAL_JWT_EXPIRE_TIME = Duration.ofMinutes(5);
     public static final Duration NORMAL_JWT_REFRESH_TIME = Duration.ofDays(14);
 
     //    private final JWTSigner jwtSigner;

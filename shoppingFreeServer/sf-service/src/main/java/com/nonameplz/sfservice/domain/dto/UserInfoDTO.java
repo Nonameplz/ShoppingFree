@@ -3,6 +3,7 @@ package com.nonameplz.sfservice.domain.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class UserInfoDTO {
@@ -18,6 +19,8 @@ public class UserInfoDTO {
     private String phoneNumber;
     @Schema(description = "用户头像URL", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     private String avatarUrl;
+    @Schema(description = "用户头像文件", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    private Object avatarFile;
     @Schema(description = "用户地址", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     private String address;
 
